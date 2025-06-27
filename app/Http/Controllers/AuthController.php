@@ -37,14 +37,14 @@ class AuthController extends Controller
 
 
     public static function login(Request $request){
-        
+
         $validated = $request->validate([
            'username' => 'required',
            'password' => 'required'
         ]);
 
 
-       
+
        // if success then redirect to home page
        if(Auth::attempt($validated)){
         $request->session()->regenerate();
@@ -52,15 +52,14 @@ class AuthController extends Controller
         return redirect()->intended('/');
        }
 
-       return back()->with('error','invalid username or paasword');
-    
+       return back()->with('error','invalid username or password');
     }
 
 
     // for logout
    public static function logout(Request $request){
      Auth::logout();
-     
+
      $request->session()->invalidate();
      $request->session()->regenerateToken();
 

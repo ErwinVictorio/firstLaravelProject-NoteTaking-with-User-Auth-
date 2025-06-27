@@ -10,6 +10,7 @@
           {{session('success')}}
         </div>
      @endif
+
    <div class="container-fluid row gap-3 align-items-center">
       @if ($notes && $notes->count() > 0)
             {{-- card -start --}}
@@ -23,7 +24,7 @@
                 <div class="d-flex gap-3">
                   <form action="{{route('note.destroy',$note->id)}}" method="POST">
                       @csrf
-                      @method('DELETE')
+                        @method('DELETE')
                         <button type="submit" onclick="return confirm('are you sure?')" class="btn text-danger">
                           Delete
                         </button>
@@ -41,8 +42,7 @@
           <picture class="d-flex justify-content-center align-items-center" >
              <img class="image-fluid col-lg-2" src="{{URL('images/noData.svg')}}" alt="svg">
           </picture>
-      @endif 
-     
+      @endif
    </div>
-</section>  
+</section>
 </x-layout>

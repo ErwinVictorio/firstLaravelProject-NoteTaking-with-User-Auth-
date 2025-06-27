@@ -19,7 +19,6 @@ class AuthMiddleware
     {
 
         // list of allowes routes without login
-
         $allowedRoutes = [
            'auth.register',
            'auth.login',
@@ -27,10 +26,10 @@ class AuthMiddleware
         ];
 
 
-        // set the condation 
+        // set the condation
         if (!Auth::check() && !in_array($request->route()->getName(), $allowedRoutes)) {
             return redirect()->route('auth.login')->with('error', 'please loged in your account!');
-        }
+    }
 
         return $next($request);
     }

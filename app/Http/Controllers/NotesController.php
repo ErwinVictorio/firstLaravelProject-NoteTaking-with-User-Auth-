@@ -12,7 +12,7 @@ class NotesController extends Controller
        return view('/pages/myNote',compact('notes'));
     }
 
-   
+
 
     public static function store(Request $request){
         // validate the form
@@ -21,9 +21,7 @@ class NotesController extends Controller
          'Note' => 'required|string'
        ]);
 
-
        // save the data to the database
-
        Notes::create([
           'title' => $validated['Title'],
           'note' => $validated['Note']
@@ -32,8 +30,10 @@ class NotesController extends Controller
        return redirect()->route('create');
     }
 
-    public static function edit($id){
+
+    public static function edit($id){     
        $note = Notes::findOrFail($id);
+    
 
        return view('note.edit', compact('note'));
     }
@@ -46,15 +46,16 @@ class NotesController extends Controller
       ]);
 
 
+
       $note = Notes::findOrFail($id);
-   
+
       $note->update([
           'title' => $validated['Title'],
            'note' => $validated['Note']
       ]);
 
       // rederict with success message
-      return redirect()->route('myNote')->with('success', 'successfully Updated');
+      return to_route('myNote')->with('success', 'successfully Updated');
     }
 
     public static function destroy($id){
@@ -62,8 +63,8 @@ class NotesController extends Controller
       $title = $note->title;
 
       $note->delete();
-      return redirect()->route('myNote')->with('success',"Succcessfully Deleted: $title");
+      return to_route('myNote')->with('success',"Succcessfully Deleted: $title");
     }
 
-    
-}   
+
+}

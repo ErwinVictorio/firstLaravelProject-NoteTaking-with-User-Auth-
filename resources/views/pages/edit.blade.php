@@ -7,7 +7,7 @@
                   <li>{{$message}}</li>
                </ul>
             @endforeach
-        </div>  
+        </div>
       @endif
           <form action="{{route('note.update',$note->id)}}" method="POST" class="d-flex flex-column gap-3">
             @csrf
@@ -22,7 +22,7 @@
                   </textarea>
                   <label for="Note">Note</label>
                 </div>
-  
+
                 <div>
                   <button type="submit" class="btn btn-primary">
                      Save Changes
